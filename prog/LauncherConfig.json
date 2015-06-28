@@ -1,0 +1,7 @@
+{
+	"prog":[
+		{"name":"龚能自评", "file":"/ziping.py"},
+		{"name":"龚能互评", "file":"/huping.py"},
+		{"name":"抢课神器", "file":"/qiangke.py"}
+	]
+}
