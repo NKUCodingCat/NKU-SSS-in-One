@@ -44,7 +44,7 @@ def choo():
 	try:
 		Start(CFG["prog"][int(In)-1])
 	except:
-		raise
+		#raise
 		print u"输入错误, 请按Enter退出"
 		raw_input()
 		
