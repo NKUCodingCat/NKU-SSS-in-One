@@ -121,7 +121,9 @@ if __name__ == "__main__":
 			j = Test(S)
 			if j :
 				try:
-				S.get("http://fuxue.nankai.edu.cn/index.php/Assessment/judgeStuLevel")
+					S.get("http://fuxue.nankai.edu.cn/index.php/Assessment/judgeStuLevel")
+				except:
+					print u"请自行访问 http://fuxue.nankai.edu.cn/index.php/Assessment/judgeStuLevel"
 				print u"测试完成请按enter退出"
 				raw_input()
 				try:
