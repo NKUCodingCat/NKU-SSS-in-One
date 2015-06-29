@@ -28,7 +28,8 @@ def Start(Prog):
 	print u"启动中。。。。。。。"
 	if not (getattr(sys, "getwindowsversion", None)):
 		#not a windows
-		subprocess.call("\"%s\" \"%s\""%("python", FilePath))
+		#print FilePath
+		os.system("%s \"%s\""%("python", FilePath))
 	
 	else:
 		#on windows
@@ -44,7 +45,7 @@ def choo():
 	try:
 		Start(CFG["prog"][int(In)-1])
 	except:
-		#raise
+		raise
 		print u"输入错误, 请按Enter退出"
 		raw_input()
 		
