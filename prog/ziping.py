@@ -120,6 +120,8 @@ if __name__ == "__main__":
 		try:
 			j = Test(S)
 			if j :
+				try:
+				S.get("http://fuxue.nankai.edu.cn/index.php/assessment/xnmSelfAssessment")
 				print u"测试完成请按enter退出"
 				raw_input()
 				try:

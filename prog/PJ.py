@@ -43,6 +43,7 @@ class PJ():
 	def RefreshAll(self):
 		print "Refreshed"
 		self.Session = requests.session()
+		#self.Session.proxies = {"http":"127.0.0.1:8888"}
 		self.vcode = StringIO.StringIO(base64.b64decode(self.white))
 		self.NetWork = False
 		try:
