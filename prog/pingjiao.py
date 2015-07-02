@@ -119,17 +119,20 @@ class Application(Application_ui):
         usr = str(self.Text1.get())
         pwd = str(self.Text2.get())
         vc = str(self.Text3.get())
-        print "usr %s pwd %s vcode %s"%(usr, pwd, vc)
+        #print "usr %s pwd %s vcode %s"%(usr, pwd, vc)
+        self.InsLog(u"测试网络连接。。。。。。")
         if not self.P.NetWork:
             self.InsLog(u"不能连接到选课系统,请检查网络并重启")
             return
         Login_Status = self.P.Login(usr, pwd, vc)
+        self.InsLog(u"登录中。。。。。。。")
         if Login_Status["Err"]:
             self.InsLog("Error Occured! "+Login_Status["Val"])
             self.ReloadAll()
             return
+        self.InsLog(u"开始评教，请稍后。。。。。。")
         try:
-            PJ_Status = self.P.PJ()
+            PJ_Status = self.P.PJ(self.InsLog)
         except:
             self.InsLog("Error Occured! "+"Unknown Error")
             return

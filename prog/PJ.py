@@ -3,6 +3,7 @@ import requests
 import StringIO
 import re
 import base64
+import sys
 
 class PJ():
 	def __init__(self):
@@ -57,7 +58,7 @@ class PJ():
 		except:
 			pass
 	
-	def PJ(self):
+	def PJ(self, func = (lambda obj:sys.stdout.write(obj+'\n') )):
 		try:
 			G = self.Session.get("http://222.30.32.10/evaluate/stdevatea/queryCourseAction.do")
 		except :
@@ -76,8 +77,11 @@ class PJ():
 				for j in range(len(item)):  
 					params+=("&array["+str(j)+"]="+item[j])
 				params+="&opinion="
-				E = self.Session.post("http://222.30.32.10/evaluate/stdevatea/queryTargetAction.do", headers = {"Referer":Add}, data = params).content.decode("gb2312")
-				if -1==E.find(u"成功保存！"):failcount+=1
+				#print params
+				E = self.Session.post("http://222.30.32.10/evaluate/stdevatea/queryTargetAction.do", headers = {"Referer":Add, "Content-Type": "application/x-www-form-urlencoded"}, data = params).content.decode("gb2312")
+				if not re.findall(u"成功保存", E):
+					failcount += 1
+				func(u"评价第%s门课完成， 状态：%s"%(i+1, u"成功" if not re.findall("成功保存", E) else u"失败"))
 			return {"Err":False, "Val":"Total: %s  Success: %s"%(num, num-failcount)}
 
 
