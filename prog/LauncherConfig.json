@@ -1,8 +1,10 @@
 {
 	"prog":[
-		{"name":"龚能自评", "file":"/ziping.py"},
-		{"name":"龚能互评", "file":"/huping.py"},
-		{"name":"抢课神器", "file":"/qiangke.py"},
-		{"name":"一键评教", "file":"/pingjiao.py"}
+		{"name":"龚能自评", "file":"/src/ziping.py"} ,
+		{"name":"龚能互评", "file":"/src/huping.py"} ,
+		{"name":"抢课神器", "file":"/src/qiangke.py"} ,
+		{"name":"一键评教", "file":"/src/pingjiao.py"} ,
+		{"name":"党课刷题", "file":"/src/Dang.py"} , 
+		{"name":"大语刷题", "file":"/src/dayu.py"}
 	]
 }
