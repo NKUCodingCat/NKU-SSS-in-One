@@ -92,3 +92,4 @@ if __name__=="__main__":
 	print u"请输入密码：", ; pwd = raw_input()
 	print u"请输入你觉得这套题让老师觉得你做多久合适的时间（单位：分钟）：", ; wait = raw_input()
 	Main(usr, pwd, int(wait))
+	raw_input("Mission Complete. Press Any Key to Continue")
