@@ -15,10 +15,7 @@ Check = "http://192.168.8.119/ol/studycourse/check"
 Keep_alive = 245.0 #in second
 #====================
 def _(string):
-	if isinstance(string, unicode): 
-		return string.encode('GBK') 
-	else: 
-		return string.decode("utf-8").encode("GBK")
+	return unicode(string)
 def lxml_de(content):
 	page = etree.HTML(content.lower().decode('utf-8', 'ignore'))
 	uls = page.xpath(u"//ul")
@@ -131,8 +128,8 @@ print _("""
           Ver 1.0.20150325 \n
 =======================================
 """)
-usr = raw_input(_("请输入学号(输完按回车): "))
-pwd = raw_input(_("请输入密码(输完按回车): "))
+print _("请输入学号(输完按回车): "),;usr = raw_input()
+print _("请输入密码(输完按回车): "),;pwd = raw_input()
 S, profile = Login(usr,pwd)
 Wait_to_Ref = lxml_de(S.get("http://192.168.8.119/ol/studycourse").content)
 if profile == []:
