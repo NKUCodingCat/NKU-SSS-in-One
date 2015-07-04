@@ -44,9 +44,12 @@ def choo():
 	In = raw_input()
 	try:
 		Start(CFG["prog"][int(In)-1])
-	except:
-		raise
+	except IndexError:
+		#raise
 		print u"输入错误, 请按Enter退出"
+		raw_input()
+	except :
+		print u"有错误发生, 按enter退出"
 		raw_input()
 		
 if __name__ == "__main__":

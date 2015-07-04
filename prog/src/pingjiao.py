@@ -1,7 +1,7 @@
 ﻿#!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-import B
+import C
 
 import os, sys
 if sys.version_info[0] == 2:

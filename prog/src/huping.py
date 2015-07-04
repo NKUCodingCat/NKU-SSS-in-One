@@ -1,5 +1,5 @@
 #coding=utf-8
-import B
+import C
 import urllib
 import urllib2 
 import cookielib

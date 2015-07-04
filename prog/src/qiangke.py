@@ -3,7 +3,7 @@
 from __future__ import division
 Ver = 'Ver 2.0 Basic (20150305)'
 
-import B
+import C
 
 import httplib
 import re

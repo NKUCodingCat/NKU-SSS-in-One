@@ -1,5 +1,5 @@
 #coding=utf-8
-import B
+import C
 import requests, re, json
 from lxml import etree
 from urllib import urlencode

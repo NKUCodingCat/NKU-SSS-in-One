@@ -1,5 +1,5 @@
 #coding=utf-8
-import B
+import C
 import requests
 import time, re, json
 from lxml import etree
