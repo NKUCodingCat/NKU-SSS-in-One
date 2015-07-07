@@ -70,8 +70,8 @@ if __name__ == "__main__":
 		L, M, D = Diff_Dict(P, Q)
 		print u"\n=========================="
 		Update  =partial(File_Down, NetBase = "https://raw.githubusercontent.com/NKUCodingCat/NKU-SSS-in-One/master/%s", Root = root+"/")
-		Sync(L, "There %s files not found in Local", Prefix, Update)
-		Sync(M, "There %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
-		Sync(D, "There %s files not same the file in Local", Prefix, Update)
+		Sync(L, "==========================\nThere %s files not found in Local", Prefix, Update)
+		Sync(M, "==========================\nThere %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
+		Sync(D, "==========================\nThere %s files not same as the file in Local", Prefix, Update)
 	print "Update Complete, Restart The Program, Thank you"
 	raw_input("Press Enter to exit")
