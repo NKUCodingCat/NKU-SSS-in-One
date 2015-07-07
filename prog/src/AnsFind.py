@@ -1,4 +1,5 @@
 #coding=utf-8
+
 import os, difflib, re
 import fileinput
 class AnsFind:

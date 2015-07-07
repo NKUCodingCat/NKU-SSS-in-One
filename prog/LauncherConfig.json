@@ -5,6 +5,7 @@
 		{"name":"抢课神器", "file":"/src/qiangke.py"} ,
 		{"name":"一键评教", "file":"/src/pingjiao.py"} ,
 		{"name":"党课刷题", "file":"/src/Dang.py"} , 
-		{"name":"大语刷题", "file":"/src/dayu.py"}
+		{"name":"大语刷题", "file":"/src/dayu.py"} ,
+		{"name":"检查更新", "file":"/src/Auto-Update.py"}
 	]
 }
