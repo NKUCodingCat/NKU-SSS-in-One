@@ -48,7 +48,10 @@ def Sync(Array, Word, Prefix, Func):
 
 def File_Down(Path, NetBase, Root):
 	print "Downloading %s ......"%Path
-	open(Root+Path, "wb").write(requests.get(NetBase%Path, verify = False).content)
+	try:
+		open(Root+Path, "wb").write(requests.get(NetBase%Path, verify = False).content)
+	except:
+		print u"Error Occured When Updating %s"%(Root+Path)
 	
 
 if __name__ == "__main__":
@@ -57,14 +60,18 @@ if __name__ == "__main__":
 	root = os.path.dirname(root)
 	Prefix = "NKU-SSS-in-One-master/"
 	print u"downloading MD5 Info ......."
-	P = json.loads(json.loads(requests.get("https://python-nkusss.rhcloud.com/UPD-SSS-in-One", verify=False).content)[0][-1])
-	print u"Calculating MD5 Info for all Files "
-	Q = MD5_Info_for_dir(root, Prefix)
-	L, M, D = Diff_Dict(P, Q)
-	print u"\n=========================="
-	Update  =partial(File_Down, NetBase = "https://raw.githubusercontent.com/NKUCodingCat/NKU-SSS-in-One/master/%s", Root = root+"/")
-	Sync(L, "There %s files not found in Local", Prefix, Update)
-	Sync(M, "There %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
-	Sync(D, "There %s files not same the file in Local", Prefix, Update)
+	try:
+		P = json.loads(json.loads(requests.get("https://python-nkusss.rhcloud.com/UPD-SSS-in-One", verify=False).content)[0][-1])
+	except:
+		print u"Download MD5 Info from Remote Server Failed!"
+	else:
+		print u"Calculating MD5 Info for all Files "
+		Q = MD5_Info_for_dir(root, Prefix)
+		L, M, D = Diff_Dict(P, Q)
+		print u"\n=========================="
+		Update  =partial(File_Down, NetBase = "https://raw.githubusercontent.com/NKUCodingCat/NKU-SSS-in-One/master/%s", Root = root+"/")
+		Sync(L, "There %s files not found in Local", Prefix, Update)
+		Sync(M, "There %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
+		Sync(D, "There %s files not same the file in Local", Prefix, Update)
 	print "Update Complete, Restart The Program, Thank you"
 	raw_input("Press Enter to exit")
