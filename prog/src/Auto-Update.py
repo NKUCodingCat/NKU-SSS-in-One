@@ -47,7 +47,7 @@ def Sync(Array, Word, Prefix, Func):
 
 
 def File_Down(Path, NetBase, Root):
-	print "Downloading %s ......"%Paths
+	print "Downloading %s ......"%Path
 	open(Root+Path, "wb").write(requests.get(NetBase%Path, verify = False).content)
 	
 
