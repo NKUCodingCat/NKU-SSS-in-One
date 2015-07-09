@@ -61,15 +61,20 @@ if __name__ == "__main__":
 	Prefix = "NKU-SSS-in-One-master/"
 	print u"downloading MD5 Info ......."
 	try:
+<<<<<<< HEAD
+		P = json.loads(json.loads(requests.get("https://python-nkusss.rhcloud.com/UPD-SSS-in-One", verify = False).content)[0][-1])
+=======
 		P = json.loads(json.loads(requests.get("https://rhc-py-ser-1.nkucodingcat.com/UPD-SSS-in-One", verify=False).content)[0][-1])
+>>>>>>> origin/master
 	except:
+		#raise
 		print u"Download MD5 Info from Remote Server Failed!"
 	else:
 		print u"Calculating MD5 Info for all Files "
 		Q = MD5_Info_for_dir(root, Prefix)
 		L, M, D = Diff_Dict(P, Q)
 		print u"\n=========================="
-		Update  =partial(File_Down, NetBase = "https://raw.githubusercontent.com/NKUCodingCat/NKU-SSS-in-One/master/%s", Root = root+"/")
+		Update  = partial(File_Down, NetBase = "https://python-nkusss.rhcloud.com/data/ext/NKU-SSS-in-One-master/%s", Root = root+"/")
 		Sync(L, "==========================\nThere %s files not found in Local", Prefix, Update)
 		Sync(M, "==========================\nThere %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
 		Sync(D, "==========================\nThere %s files not same as the file in Local", Prefix, Update)
