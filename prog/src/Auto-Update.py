@@ -61,11 +61,7 @@ if __name__ == "__main__":
 	Prefix = "NKU-SSS-in-One-master/"
 	print u"downloading MD5 Info ......."
 	try:
-<<<<<<< HEAD
 		P = json.loads(json.loads(requests.get("https://python-nkusss.rhcloud.com/UPD-SSS-in-One", verify = False).content)[0][-1])
-=======
-		P = json.loads(json.loads(requests.get("https://rhc-py-ser-1.nkucodingcat.com/UPD-SSS-in-One", verify=False).content)[0][-1])
->>>>>>> origin/master
 	except:
 		#raise
 		print u"Download MD5 Info from Remote Server Failed!"
