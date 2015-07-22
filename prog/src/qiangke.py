@@ -728,7 +728,7 @@ class Application(Application_ui):
 			contnt=conct.getresponse().read().decode("gb2312")
 			conct.close()
 		except:
-			return "教务处网站错误"
+			return "教务处网站无法使用，不能保证课程序号的正确性，请谨慎抢课"
 		pos=contnt.find('</TD></TR><TR><TD>')
 		if pos == -1:
 			value =  "wrong_course"
