@@ -535,7 +535,7 @@ class Application(Application_ui):
 		conn=httplib.HTTPConnection("222.30.32.10",timeout=5)
 		conn.request("GET", SelValUrl, headers = headers)
 		res=StringIO.StringIO(conn.getresponse().read())
-		Code = OCR_OBJ.IM_to_Str_MatDiff(PIL.Image.open(res)) and "1111"
+		Code = OCR_OBJ.IM_to_Str_MatDiff(PIL.Image.open(res))
 		#--------------------------
 		postdata="operation=xuanke&index=&code=%s"%Code
 		for i in range(4):
