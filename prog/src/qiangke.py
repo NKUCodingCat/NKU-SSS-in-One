@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 from __future__ import division
-Ver = 'Ver 2.0 Basic (20150305)'
+Ver = 'Ver 2.0 Basic With OCR (20150723)'
 
 import C
 
@@ -13,8 +13,13 @@ import urllib2
 import urllib
 import cookielib
 import time
+import StringIO
+from xkocr import OCR
 
 #----------------------------------------------------
+
+OCR_OBJ = OCR.Val_to_Str(os.path.split(os.path.realpath(__file__))[0]+"/dump-fuck.txt")
+
 addr="http://222.30.32.10/ValidateCode"
 
 hosturl="http://222.30.32.10/"
@@ -22,6 +27,8 @@ hosturl="http://222.30.32.10/"
 posturl="http://222.30.32.10/stdloginAction.do"
 
 UpUrl = 'http://222.30.32.10/xsxk/swichAction.do'
+
+SelValUrl = 'http://222.30.32.10/SelectValidateCode'
 
 HEADERS = ''
 
@@ -524,8 +531,13 @@ class Application(Application_ui):
 			info += (course[i]+' '+self.GetName(course[i])+'\n')
 		self.Log.insert(1.0,info)
 		self.Log.update()
-
-		postdata="operation=xuanke&index="
+		#-------------------------
+		conn=httplib.HTTPConnection("222.30.32.10",timeout=5)
+		conn.request("GET", SelValUrl, headers = headers)
+		res=StringIO.StringIO(conn.getresponse().read())
+		Code = OCR_OBJ.IM_to_Str_MatDiff(PIL.Image.open(res)) and "1111"
+		#--------------------------
+		postdata="operation=xuanke&index=&code=%s"%Code
 		for i in range(4):
 			if i<len(course):
 				postdata += ("&xkxh"+str(i+1)+"="+course[i])
@@ -553,7 +565,7 @@ class Application(Application_ui):
 		#----------------------抓取-------------
 		reg = re.compile(u'"BlueBigText">[\s\S]*</font>')
 		Data = reg.findall(content)
-		#---------------截取--------------------\
+		#---------------截取--------------------
 		if Data != []:
 			Data=Data[0]
 			Data=Data[14:]
@@ -567,6 +579,8 @@ class Application(Application_ui):
 				self.Log.insert(1.0,('>>>>>>已停止<<<<<<\n\nERROR!\n\n'))
 				self.Log.update()
 				return
+			if re.findall(r'正确的验证码', Data):
+				Data = "验证码识别错误……如果多次识别错误请联系喵君"
 		else:
 			Data = ''
 		#---------------End---------------------
