@@ -772,7 +772,7 @@ class Application(Application_ui):
 			conn.close()
 		except:
 			return False
-		if re.findall(name.decode("utf-8", 'ignore').encode('gbk'), content):
+		if re.findall(re.escape(name.decode("utf-8", 'ignore').encode('gbk')), content):
 			return True
 		return False
 
