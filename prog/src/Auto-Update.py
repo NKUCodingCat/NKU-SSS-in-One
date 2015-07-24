@@ -48,8 +48,11 @@ def Sync(Array, Word, Prefix, Func):
 
 def File_Down(Path, NetBase, Root):
 	print "Downloading %s ......"%Path
+	Local_File = Root+Path
+	if not os.path.isdir(os.path.dirname(Local_File)):
+		os.makedirs(os.path.dirname(Local_File))
 	try:
-		open(Root+Path, "wb").write(requests.get(NetBase%Path, verify = False).content)
+		open(Local_File , "wb").write(requests.get(NetBase%Path, verify = False).content)
 	except:
 		print u"Error Occured When Updating %s"%(Root+Path)
 	

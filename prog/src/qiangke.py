@@ -47,7 +47,8 @@ headers= {
 'User-Agent':' Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.1; WOW64; Trident/5.0; SLCC2; .NET CLR 2.0.50727; .NET CLR 3.5.30729; .NET CLR 3.0.30729; Media Center PC 6.0; .NET4.0C; .NET4.0E; InfoPath.3)',
 'Host':' 222.30.32.10',
 'Pragma':' no-cache',
-'Cookie':''
+'Cookie':'',
+'connection':'close'
 }
 
 HEADERS = headers
@@ -771,7 +772,7 @@ class Application(Application_ui):
 			conn.close()
 		except:
 			return False
-		if content.find(name) != -1:
+		if re.findall(name.decode("utf-8", 'ignore').encode('gbk'), content):
 			return True
 		return False
 
