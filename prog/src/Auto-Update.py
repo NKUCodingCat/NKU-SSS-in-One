@@ -1,7 +1,8 @@
 #coding=utf-8
 import C
-import os, md5, json, re, requests, copy
+import os, md5, json, re, requests, copy, urllib
 from functools import partial
+import bar
 
 
 
@@ -45,15 +46,20 @@ def Sync(Array, Word, Prefix, Func):
 			for i in Array:
 				Func(i)
 
-
+	
 def File_Down(Path, NetBase, Root):
 	print "Downloading %s ......"%Path
+	Bar = bar.SimpleProgressBar()
 	Local_File = Root+Path
 	if not os.path.isdir(os.path.dirname(Local_File)):
 		os.makedirs(os.path.dirname(Local_File))
 	try:
-		open(Local_File , "wb").write(requests.get(NetBase%Path, verify = False).content)
+		
+		urllib.urlretrieve(NetBase%Path, Local_File, reporthook=lambda x, y, z: Bar.update(x*y*100.0/z))
+		print "\n"
+		#open(Local_File , "wb").write(requests.get(, verify = False).content)
 	except:
+		#raise
 		print u"Error Occured When Updating %s"%(Root+Path)
 	
 
