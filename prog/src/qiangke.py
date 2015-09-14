@@ -3,7 +3,7 @@
 from __future__ import division
 Ver = 'Ver 3.0 With OCR (20150725)'
 
-
+import C
 import re
 import os, sys
 import PIL.Image, PIL.ImageTk 
