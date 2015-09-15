@@ -39,8 +39,11 @@ class Xuanke(PJ.PJ):
 		ValData_F = ValData.content
 		if ValData.url == "http://222.30.32.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
-		IM_Sel_Valcode = Image.open(StringIO.StringIO(ValData_F))
-		Code = self.OCR_OBJ.IM_to_Str_MatDiff(IM_Sel_Valcode)
+		try:
+			IM_Sel_Valcode = Image.open(StringIO.StringIO(ValData_F))
+		except:
+			IM_Sel_Valcode = None
+		Code = self.OCR_OBJ.IM_to_Str_MatDiff(IM_Sel_Valcode) if IM_Sel_Valcode else ""
 		postdata="operation=xuanke&index=&code=%s"%Code
 		for i in range(4):
 			if i<len(Array_of_Course):
