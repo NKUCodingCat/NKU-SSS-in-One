@@ -9,10 +9,10 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 ## 目标 ##
 各平台统一的NKU-SSS软件，一个软件包解决南开学习生活
 
-###注意：现在并不支持Mac OS X, 需要OSX版本请戳[这里](https://github.com/Neon4o4/NKU-SSS-in-One)寻找【嗯我就是嫌弃他把包搞的太大我也不造为什么但是应该没那么多东西吧╮(￣▽￣")╭ 】, 经过测试可用的系统有:windows XP+, lubuntu 15.04, Kaili 1.1.0, 私以为基于debian64位的大概都可以###
+###注意：现在本喵并不打算支持Mac OS X和\*nix, 需要OSX版本请戳[这里](https://github.com/Neon4o4/NKU-SSS-in-One)寻找或者点击 OSX使用指南.txt 【我相信你看不下去，能照做做完的请联系我】, 至于\*nix用户请自己安装依赖列表里面的各种依赖###
 
-## 包含库 ##
-`lxml, requests, Tkinter, PIL`
+## 依赖 ##
+`lxml, requests, Tkinter, pillow, PyV8, numpy`
 
 
 
