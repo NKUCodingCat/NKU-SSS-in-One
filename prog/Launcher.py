@@ -37,6 +37,13 @@ def Start(Prog):
 		
 def choo():
 	a = 0
+	print u"""
+	
+请注意：如果重启程序多次仍然发现有奇怪的问题，请先尝试运行自动更新升级到最新版再试一次，么么哒
+		
+		——也爱你们的喵
+	
+	"""
 	for i in CFG["prog"]:
 		a += 1
 		print "  %s - %s"%(a, i["name"])
