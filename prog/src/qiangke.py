@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 from __future__ import division
-Ver = 'Ver 3.0 With OCR (20150725)'
+Ver = 'Ver 3.0.1 With OCR & RSA (20150915)'
 
 import C
 import re

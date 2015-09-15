@@ -5,7 +5,10 @@ import StringIO
 import re
 import base64
 import sys
-from PyV8 import PyV8
+try:
+	from PyV8 import PyV8  #for Windows or *nix individual pack
+except ImportError:
+	import PyV8  #for system lib
 
 class PJ():
 	def __init__(self):
