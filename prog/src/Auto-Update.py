@@ -14,7 +14,7 @@ def MD5_Info_for_dir(RootDir, Prefix ):
 			E = os.path.relpath(pa, root)
 			E = E+"/" if E != "." else ""
 			F = re.sub(r"\\",r"/", E+i)
-			Q[unicode(Prefix+F.decode("GBK"))] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
+			Q[unicode(Prefix+F)] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
 	return Q
 
 def Diff_Dict(Remote, Local):
@@ -55,7 +55,7 @@ def File_Down(Path, NetBase, Root):
 		os.makedirs(os.path.dirname(Local_File))
 	try:
 		
-		urllib.urlretrieve(NetBase%Path, Local_File, reporthook=lambda x, y, z: Bar.update(x*y*100.0/z) if z>524288 else None)
+		urllib.urlretrieve(NetBase%Path.encode('utf-8'), Local_File, reporthook=lambda x, y, z: Bar.update(x*y*100.0/z) if z>524288 else None)
 		print "\n"
 		#open(Local_File , "wb").write(requests.get(, verify = False).content)
 	except:
