@@ -10,6 +10,7 @@ if sys.version_info[0] == 2:
     from ttk import *
     #Usage:showinfo/warning/error,askquestion/okcancel/yesno/retrycancel
     from tkMessageBox import *
+    from tkFileDialog import *
     #Usage:f=tkFileDialog.askopenfilename(initialdir='E:/Python')
     #import tkFileDialog
     #import tkSimpleDialog
@@ -18,11 +19,14 @@ else:  #Python 3.x
     from tkinter.font import Font
     from tkinter.ttk import *
     from tkinter.messagebox import *
+    from tkinter.filedialog import *
     #import tkinter.filedialog as tkFileDialog
     #import tkinter.simpledialog as tkSimpleDialog    #askstring()
 
 import PIL.Image, PIL.ImageTk
 import time
+import csv
+from os.path import expanduser
 import PJ
 
 
@@ -72,10 +76,13 @@ class Application_ui(Frame):
         self.Text3.bind("<KP_Enter>", self.Command1_Cmd)
 
         self.Command1 = Button(self.top, text=u'开始评教', command=self.Command1_Cmd)
-        self.Command1.place(relx=0.07, rely=0.513, relwidth=0.322, relheight=0.12)
+        self.Command1.place(relx=0.05, rely=0.513, relwidth=0.30, relheight=0.12)
 
         self.Command2 = Button(self.top, text=u'退出', command=self.Command2_Cmd)
-        self.Command2.place(relx=0.529, rely=0.513, relwidth=0.357, relheight=0.12)
+        self.Command2.place(relx=0.75, rely=0.513, relwidth=0.20, relheight=0.12)
+        
+        self.Command3 = Button(self.top, text=u'导出成绩', command=self.Command3_Cmd)
+        self.Command3.place(relx=0.40, rely=0.513, relwidth=0.30, relheight=0.12)
         
 
         #self.Text4Var = Text(value='Text4')
@@ -91,6 +98,7 @@ class Application(Application_ui):
     def __init__(self, master=None):
         self.P = PJ.PJ()
         self.vcode = self.P.vcode
+        self.isLogin = False
         Application_ui.__init__(self, self.vcode , master)
         if not self.P.NetWork:
            self.InsLog(u"不能连接到选课系统,请检查网络并重启")
@@ -109,36 +117,73 @@ class Application(Application_ui):
         self.Log.insert(1.0, "%s - %s"%(T, Text if Text[-1] == "\n" else Text+"\n" ))
         self.Log.delete(20.0,END)
         self.Log.update()
-
+        
+    def Log_in(self):
+        usr = str(self.Text1.get())
+        pwd = str(self.Text2.get())
+        vc = str(self.Text3.get())
+        self.InsLog(u"测试网络连接。。。。。。")
+        if not self.P.NetWork:
+            self.InsLog(u"不能连接到选课系统,请检查网络并重启")
+            return False
+        Login_Status = self.P.Login(usr, pwd, vc)
+        self.InsLog(u"登录中。。。。。。。")
+        self.isLogin = not Login_Status["Err"]
+        if Login_Status["Err"]:
+            self.InsLog("Error Occured! "+Login_Status["Val"])
+            self.ReloadAll()
+            return False
+        return True
+        
+    def Command3_Cmd(self, event=None):
+        if self.isLogin:
+            pass
+        else:
+            if not self.Log_in():
+                return 
+        opt = {
+            'defaultextension' : '.csv',
+            'filetypes'        : [('all files', '.*'), ('text files', '.csv')],
+            'initialdir'       : expanduser("~"),
+            'initialfile'      : "%s-%s-scorelist.csv"%(time.strftime("%Y-%m-%d"), str(self.Text1.get()) if str(self.Text1.get()) else "No_usrname") ,
+            'parent'           :  top, 
+            'title'            : "导出成绩列表至 ..."
+        }
+        
+        A = self.P.Score_Spider()
+        if A["Err"]:
+            self.InsLog(A["Val"])
+        else:
+            F_Name = asksaveasfile(mode='w', **opt)
+            if not F_Name:
+                return
+            f_csv = csv.writer(F_Name, lineterminator='\n')
+            f_csv.writerows(A["Val"])
+            self.InsLog("成绩列表已经导出至%s"%F_Name.name)
+        
     def Command2_Cmd(self, event=None):
         #TODO, Please finish the function here!
         self.top.quit()
 
     def Command1_Cmd(self, event=None):
         #TODO, Please finish the function here!
-        usr = str(self.Text1.get())
-        pwd = str(self.Text2.get())
-        vc = str(self.Text3.get())
-        #print "usr %s pwd %s vcode %s"%(usr, pwd, vc)
-        self.InsLog(u"测试网络连接。。。。。。")
-        if not self.P.NetWork:
-            self.InsLog(u"不能连接到选课系统,请检查网络并重启")
-            return
-        Login_Status = self.P.Login(usr, pwd, vc)
-        self.InsLog(u"登录中。。。。。。。")
-        if Login_Status["Err"]:
-            self.InsLog("Error Occured! "+Login_Status["Val"])
-            self.ReloadAll()
-            return
-        self.InsLog(u"开始评教，请稍后。。。。。。")
+        if self.isLogin:
+            pass
+        else:
+            if not self.Log_in():
+                return 
+        self.InsLog(u"开始评教，请稍候。。。。。。")
         try:
             PJ_Status = self.P.PJ(self.InsLog)
         except:
             self.InsLog("Error Occured! "+"Unknown Error")
+            self.InsLog("请登录选课系统查看评教状况")
             return
         else:
             if PJ_Status["Err"]:
                 self.InsLog("Error Occured! "+PJ_Status["Val"])
+                if PJ_Status["Val"] == "Please Login First!":
+                    self.isLogin = False
             else:
                 self.InsLog("Success! "+PJ_Status["Val"])
             return 

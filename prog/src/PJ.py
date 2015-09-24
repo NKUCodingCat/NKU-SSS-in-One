@@ -5,8 +5,10 @@ import StringIO
 import re
 import base64
 import sys
+import sys, traceback
+from lxml import etree
 try:
-	from PyV8 import PyV8  #for Windows or *nix individual pack
+	from PyV8 import PyV8  #for Windows individual pack
 except ImportError:
 	import PyV8  #for system lib
 
@@ -73,7 +75,10 @@ class PJ():
 		if G.url == "http://222.30.32.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
 		else:
-			num=int(re.findall(u"共 ([0-9]*) 项", G.content.decode("gb2312"))[0])
+			try:
+				num=int(re.findall(u"共 ([0-9]*) 项", G.content.decode("gb2312"))[0])
+			except:
+				return {"Err":True, "Val":"Remote Server does not work as expected."}
 			failcount=0
 			for i in range(num):
 				Add = "http://222.30.32.10/evaluate/stdevatea/queryTargetAction.do?operation=target&index=%s"%str(i)
@@ -90,6 +95,29 @@ class PJ():
 					failcount += 1
 				func(u"评价第%s门课完成， 状态：%s"%(i+1, u"成功" if not re.findall("成功保存", E) else u"失败"))
 			return {"Err":False, "Val":"Total: %s  Success: %s"%(num, num-failcount)}
+			
+	def Score_Spider(self):
+		try:
+			G = self.Session.get("http://222.30.32.10/xsxk/studiedAction.do")
+		except :
+			return {"Err":True, "Val":"NetWork Error!"}
+		if G.url == "http://222.30.32.10/stdlogin.jsp":
+			return {"Err":True, "Val":"Please Login First!"}
+		else:
+			try:
+				num=int(re.findall(u"共 ([0-9]+) 页", G.content.decode("gbk", "ignore"))[0])
+			except:
+				traceback.print_exc(file=sys.stdout)
+				return {"Err":True, "Val":"Remote Server does not work as expected."}
+			T_Arr = []
+			for i in range(1, num+1):
+				H = self.Session.post("http://222.30.32.10/xsxk/studiedPageAction.do", data = {"index": i})
+				F = etree.HTML(H.content.lower().decode("GBK", "ignore"))
+				Table_row = F.xpath(u"//table")[1].xpath(u'tr')[1:]
+				for row in Table_row:
+					T_Arr.append([re.sub("\s+"," ",j.text).encode("GBK", "ignore") for j in row.xpath("td")])
+			return {"Err":False, "Val":T_Arr}
+				
 			
 class RSA_password():
 	def __init__(self):
