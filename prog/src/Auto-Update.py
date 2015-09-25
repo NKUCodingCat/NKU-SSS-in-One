@@ -14,7 +14,7 @@ def MD5_Info_for_dir(RootDir, Prefix ):
 			E = os.path.relpath(pa, root)
 			E = E+"/" if E != "." else ""
 			F = re.sub(r"\\",r"/", E+i)
-			Q[unicode(Prefix+F)] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
+			Q[unicode(Prefix+F.decode("GBK"))] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
 	return Q
 
 def Diff_Dict(Remote, Local):
