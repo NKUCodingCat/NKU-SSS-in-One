@@ -6,6 +6,7 @@
 		{"name":"一键评教&成绩导出", "file":"/src/pingjiao.py"} ,
 		{"name":"党课刷题", "file":"/src/Dang.py"} , 
 		{"name":"大语刷题", "file":"/src/dayu.py"} ,
-		{"name":"检查更新", "file":"/src/Auto-Update.py"}
+		{"name":"检查更新", "file":"/src/Auto-Update.py"},
+		{"name":"下载最新版( 将会打开浏览器 )", "file":"/src/dw_new.py"}
 	]
 }
