@@ -13,8 +13,11 @@ def MD5_Info_for_dir(RootDir, Prefix ):
 		for i in fi:
 			E = os.path.relpath(pa, root)
 			E = E+"/" if E != "." else ""
-			F = re.sub(r"\\",r"/", E+i)
-			Q[unicode(Prefix+F.decode("GBK"))] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
+			try:
+				F = re.sub(r"\\",r"/", E+i)
+				Q[unicode(Prefix+F.decode("GBK"))] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
+			except:
+				pass
 	return Q
 
 def Diff_Dict(Remote, Local):
@@ -40,7 +43,7 @@ def Sync(Array, Word, Prefix, Func):
 		Array = Del_Prefix(Array, Prefix)
 		print Word%len(Array)
 		print "\n".join(Array)
-		print "\nNeed to Sync(y = yes and Other=no) ?",
+		print "\nNeed to Sync (y = yes and Other=no) ?",
 		Y = raw_input()
 		if Y == "y":
 			for i in Array:
@@ -83,5 +86,5 @@ if __name__ == "__main__":
 		Sync(L, "==========================\nThere %s files not found in Local", Prefix, Update)
 		Sync(M, "==========================\nThere %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x))
 		Sync(D, "==========================\nThere %s files not same as the file in Local", Prefix, Update)
-	print "Update Complete, Restart The Program, Thank you"
+	print "Update Complete,Please Restart The Program, Thank you"
 	raw_input("Press Enter to exit")
