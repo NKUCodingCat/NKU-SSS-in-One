@@ -28,21 +28,21 @@ class AnsFind:
 				Ans = raw_input("请输入序号：".decode("utf-8").encode("GBK"))
 				return [Q_S_Tuple[1].keys()[int(Ans)-1], Q_S_Tuple[1][Q_S_Tuple[1].keys()[int(Ans)-1]], 1.0]
 			except:
-				print "请输入正确的序号"
+				print u"请输入正确的序号"
 	def FindAns(self, Q_S_Tuple):
 		
 		Que = Q_S_Tuple[0]
 		An =  self.Q_find(Que)
 		#print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 		if An[2] < 0.8:
-			print "题库中未找到对应题目"
+			print u"题库中未找到对应题目"
 			print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 			return self.Manual_Select(Q_S_Tuple)
 		Sel = Q_S_Tuple[1]
 		FinalRes = self.A_find(Sel, An[1])
 		#print Sel
 		if FinalRes[2] < 0.90:
-			print "题库中未找到正确答案"
+			print u"题库中未找到正确答案"
 			print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 			#for i in Sel.keys():
 			#	print i, Sel[i]
