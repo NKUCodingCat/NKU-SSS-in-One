@@ -36,7 +36,7 @@ def GetQue(Session):
 	Mark = 0
 	for i in J:
 		Mark+=1
-		Q = i.xpath("li/span[@class='QFormGuidMsg']")[1].text if len(i.xpath("li/span[@class='QFormGuidMsg']")[1].text) > 4 else i.xpath("li/span[@class='QFormGuidMsg']")[4].text
+		Q = i.xpath("li/span[@class='QFormGuidMsg']")[1].text if (i.xpath("li/span[@class='QFormGuidMsg']")[1].text) and (len(i.xpath("li/span[@class='QFormGuidMsg']")[1].text) > 4) else i.xpath("li/span[@class='QFormGuidMsg']")[4].text
 		H = {}
 		Inps = [(j.attrib["id"], j.attrib["name"]+"#"+j.attrib['value']) for j in  i.xpath("li/span[@class='QuestionParam']/input")]
 		Ans =  [(j.attrib["for"], j.text) for j in i.xpath("li/span[@class='QuestionParam']/label")]

@@ -18,7 +18,7 @@ class AnsFind:
 		return sorted(S, key=lambda x:x[2])[-1]
 	def Manual_Select(self, Q_S_Tuple):
 		print u"请手动选择答案"
-		print Q_S_Tuple[0]
+		print (u"题目 > %s"%Q_S_Tuple[0]).encode("GBK", 'ignore')
 		k = 1
 		for i in Q_S_Tuple[1].keys():
 			print k, Q_S_Tuple[1][i]
@@ -36,16 +36,16 @@ class AnsFind:
 		#print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 		if An[2] < 0.8:
 			print u"题库中未找到对应题目"
-			print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
+			print u"\t-------------------------\n\t最接近的题目:    %s\n\t      答案为:    %s\n\t------------------------\n"%(An[0], An[1])
+			#print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 			return self.Manual_Select(Q_S_Tuple)
 		Sel = Q_S_Tuple[1]
 		FinalRes = self.A_find(Sel, An[1])
 		#print Sel
 		if FinalRes[2] < 0.90:
 			print u"题库中未找到正确答案"
-			print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
-			#for i in Sel.keys():
-			#	print i, Sel[i]
+			print u"\t-------------------------\n\t     匹配的题目:    %s\n\t 最接近的答案为:    %s\n\t------------------------\n"%(An[0], An[1])
+			#print Que,"/" , An[0] ,"/",An[1],"/ ", An[2]
 			return self.Manual_Select(Q_S_Tuple)
 		#print FinalRes[2],"/",
 		return FinalRes
