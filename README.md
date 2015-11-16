@@ -6,10 +6,8 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 
 解压以后windows 请点击main.exe, linux/OSX请`bash s.sh`(记得装依赖哦~)
 
-## 目标 ##
-各平台统一的NKU-SSS软件，一个软件包解决南开学习生活
 
-###注意：现在本喵并不打算支持Mac OS X和\*nix, 需要OSX版本请戳[这里](https://github.com/Neon4o4/NKU-SSS-in-One)寻找或者点击 [OSX使用指南.txt](https://github.com/NKUCodingCat/NKU-SSS-in-One/blob/master/OSX%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97.txt) 【我相信你看不下去，能照做做完的请自觉转行当程序员吧wwww】, 至于\*nix用户请自己安装依赖列表里面的各种依赖###
+###注意：现在本喵并不打算支持Mac OS X和\*nix, 需要OSX版本请戳[这里](https://github.com/Neon4o4/NKU-SSS-in-One)寻找或者点击 [OSX_User_Guide.txt](https://github.com/NKUCodingCat/NKU-SSS-in-One/blob/master/OSX_User_Guide.txt) 【我相信你看不下去，能照做做完的请自觉转行当程序员吧wwww】, 至于\*nix用户请自己安装依赖列表里面的各种依赖###
 
 ## 依赖 ##
 `lxml-3.4.4, requests-2.7.0, Tkinter, pillow-2.9.0, PyV8-1.0, numpy-1.9.2`
@@ -17,3 +15,8 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 话说能看到这里的人是不是都不会太在乎版本的问题啊=。=
 
 记得哈，是Python 2.7.x，用Python 3跑的别怪我没说
+
+##吐槽部分##
+身为世界一流大学的隔壁，没有一点为学生的学习着想，用拍脑袋替代调研，强行让学生为学校的政绩工程买单，呵呵。
+
+11/16/2015 1:51:24 PM 
