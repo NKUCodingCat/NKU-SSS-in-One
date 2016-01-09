@@ -1,0 +1,26 @@
+1 ICON "s.ico"
+2 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "080404E4"
+    BEGIN
+      VALUE "CompanyName", "My Company Name"
+      VALUE "FileDescription", "My excellent application"
+      VALUE "FileVersion", "1.0"
+      VALUE "InternalName", "my_app"
+      VALUE "LegalCopyright", "My Name"
+      VALUE "OriginalFilename", "my_app.exe"
+      VALUE "ProductName", "My App"
+      VALUE "ProductVersion", "1.0"
+    END
+  END
+
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x0804, 1252
+  END
+END
+
