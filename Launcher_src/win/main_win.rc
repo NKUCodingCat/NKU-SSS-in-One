@@ -1,26 +1,28 @@
-1 ICON "s.ico"
-2 VERSIONINFO
-FILEVERSION     1,0,0,0
-PRODUCTVERSION  1,0,0,0
-BEGIN
-  BLOCK "StringFileInfo"
-  BEGIN
-    BLOCK "080404E4"
-    BEGIN
-      VALUE "CompanyName", "My Company Name"
-      VALUE "FileDescription", "My excellent application"
-      VALUE "FileVersion", "1.0"
-      VALUE "InternalName", "my_app"
-      VALUE "LegalCopyright", "My Name"
-      VALUE "OriginalFilename", "my_app.exe"
-      VALUE "ProductName", "My App"
-      VALUE "ProductVersion", "1.0"
-    END
-  END
-
-  BLOCK "VarFileInfo"
-  BEGIN
-    VALUE "Translation", 0x0804, 1252
-  END
-END
-
+2 ICON "s.ico"
+1 VERSIONINFO
+	FILEVERSION     2,3,3,3
+	PRODUCTVERSION  2,3,3,3
+	FILEOS 0x4L
+	BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "080404E4"
+		BEGIN
+		VALUE "CompanyName", "NKUCodingCat Co.Ltd"
+		VALUE "FileDescription", "NKU-SSS-in-One Project General Launcher"
+		VALUE "FileVersion", "1.0"
+		VALUE "InternalName", "Launcher on Windows"
+		VALUE "LegalCopyright", "GPLv2"
+		VALUE "OriginalFilename", "小心使用，谨防水表"
+		VALUE "ProductName", "NKU-SSS-in-One"
+		VALUE "ProductVersion", "2.3.3 build 42"
+		VALUE "Comments", "我不是说你，我是说南开的行政人员，一个比一个辣鸡。自己的政绩想要，又不想吃相难看，一身公主病没有公主命。不把学生当回事用脚后跟猜测学生的想法拿着一群傀儡当自己得人心，一群渣渣。"
+		END
+	END
+	
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x0804, 1252
+	END
+	END
+	
