@@ -7,10 +7,10 @@ import base64
 import sys
 import sys, traceback
 from lxml import etree
-try:
-	from PyV8 import PyV8  #for Windows individual pack
-except ImportError:
-	import PyV8  #for system lib
+# try:
+# 	from PyV8 import PyV8  #for Windows individual pack
+# except ImportError:
+# 	import PyV8  #for system lib
 
 class PJ():
 	def __init__(self):
