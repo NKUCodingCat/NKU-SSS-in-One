@@ -12,6 +12,8 @@ from lxml import etree
 # except ImportError:
 # 	import PyV8  #for system lib
 
+import binascii
+
 class PJ():
 	def __init__(self):
 		self.white = 'iVBORw0KGgoAAAANSUhEUgAAAJYAAAAZCAIAAABchUC4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYdAgYerV4wMwAAAD9JREFUaN7t0QENAAAIwzDAv+ejg9BJWDtJ6XJjAUIhFEKEQiiEQohQCIVQCBEKoRAKIUIhFEIhRCiEQiiEL1sX+wMvfsLvYwAAAABJRU5ErkJggg=='
@@ -123,7 +125,7 @@ class RSA_password():
 	def __init__(self):
 		pass
 		
-	def RSA(self, password):
+	def RSA(self, pwd):
 		#  Code copy from https://github.com/yqnku/One-Key-To-Evaluation/blob/master/PingJiao.py
 		
 		publicKey = int("00b6b7f8531b19980c66ae08e3061c6295a1dfd9406b32b202a59737818d75dea03de45d44271a1473af8062e8a4df927f031668ba0b1ec80127ff323a24cd0100bef4d524fdabef56271b93146d64589c9a988b67bc1d7a62faa6c378362cfd0a875361ddc7253aa0c0085dd5b17029e179d64294842862e6b0981ca1bde29979",16)
