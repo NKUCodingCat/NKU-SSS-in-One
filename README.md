@@ -10,7 +10,7 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 ###注意：现在本喵并不打算支持Mac OS X和\*nix, 需要OSX版本请戳[这里](https://github.com/Neon4o4/NKU-SSS-in-One)寻找或者点击 [OSX_User_Guide.txt](https://github.com/NKUCodingCat/NKU-SSS-in-One/blob/master/OSX_User_Guide.txt) 【我相信你看不下去，能照做做完的请自觉转行当程序员吧wwww】, 至于\*nix用户请自己安装依赖列表里面的各种依赖###
 
 ## 依赖 ##
-`lxml-3.4.4, requests-2.7.0, Tkinter, pillow-2.9.0, PyV8-1.0, numpy-1.9.2`
+`lxml-3.4.4, requests-2.7.0, Tkinter, pillow-2.9.0, numpy-1.9.2`
 
 话说能看到这里的人是不是都不会太在乎版本的问题啊=。=
 
