@@ -236,8 +236,7 @@ class Application(Application_ui):
 
 	def InsLog(self, Text, Target = None): #Done
 		T = time.strftime("%H:%M:%S")
-		if not Target:
-			Target = self.Log
+		Target = Target or self.Log
 		Target.delete(20.0,END)
 		Target.insert(1.0, "%s - %s"%(T, Text if (Text and Text[-1] == "\n") else Text+"\n" ))
 		Target.update()
