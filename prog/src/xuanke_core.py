@@ -38,7 +38,7 @@ class Xuanke(PJ.PJ):
 		ValData = self.Session.get(self.Xuanke_Valcode_url)
 		ValData_F = ValData.content
 		if ValData.url == "http://222.30.32.10/stdlogin.jsp":
-			return {"Err":True, "Val":"Please Login First!"}
+			return {"Err":True, "Val":"Please Login at First!"}
 		try:
 			IM_Sel_Valcode = Image.open(StringIO.StringIO(ValData_F))
 		except:

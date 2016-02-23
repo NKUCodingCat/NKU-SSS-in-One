@@ -7,10 +7,7 @@ import base64
 import sys
 import sys, traceback
 from lxml import etree
-# try:
-# 	from PyV8 import PyV8  #for Windows individual pack
-# except ImportError:
-# 	import PyV8  #for system lib
+
 
 import binascii
 
@@ -31,7 +28,8 @@ class PJ():
 		}
 		try:
 			content = self.Session.post("http://222.30.32.10/stdloginAction.do", data = postdata).content.decode("gb2312")
-		except:
+		except Exception,e: 
+			traceback.print_exc() 
 			return {"Err":True, "Val":"NetWork Error!"}
 		if content.find("stdtop") != -1:
 			return {"Err":False, "Val":"Login Success"}
