@@ -34,7 +34,7 @@ class PJ():
 		if content.find("stdtop") != -1:
 			return {"Err":False, "Val":"Login Success"}
 		elif (content.find(u"请输入正确的验证码") != -1):
-			return {"Err":True, "Val":"ValidateCode Error!"}
+			return {"Err":True, "Val":"Validate Code Error, Refresh the Validate Code and Retry"}
 		elif (content.find(u"用户不存在或密码错误") != -1):
 			return {"Err":True, "Val":"User Name or Password Error!"}
 		elif (content.find(u"忙") != -1 or content.find(u"负载") != -1):

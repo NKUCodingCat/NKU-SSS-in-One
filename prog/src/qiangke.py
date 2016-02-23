@@ -234,8 +234,10 @@ class Application(Application_ui):
            			self.InsLog(u"不能连接到选课系统,请检查网络并重启", self.Log)
 		self.isInLoop = False
 
-	def InsLog(self, Text, Target): #Done
+	def InsLog(self, Text, Target = None): #Done
 		T = time.strftime("%H:%M:%S")
+		if not Target:
+			Target = self.Log
 		Target.delete(20.0,END)
 		Target.insert(1.0, "%s - %s"%(T, Text if (Text and Text[-1] == "\n") else Text+"\n" ))
 		Target.update()
@@ -388,7 +390,7 @@ class Application(Application_ui):
 			if not self.wait_for_system():
 				return post_course_list
 		except:
-			self.InsLog("Check System Status Error")
+			self.InsLog("Check System Status Error", self.Log)
 			return post_course_list
 		NEXT_POST = time.time()+5
 		course=[]
