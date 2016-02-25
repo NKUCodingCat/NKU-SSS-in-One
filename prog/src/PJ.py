@@ -27,7 +27,7 @@ class PJ():
 			"submittype":"\xC8\xB7 \xC8\xCF"
 		}
 		try:
-			content = self.Session.post("http://222.30.32.10/stdloginAction.do", data = postdata).content.decode("gb2312")
+			content = self.Session.post("http://222.30.32.10/stdloginAction.do", data = postdata, timeout=5).content.decode("gb2312")
 		except Exception,e: 
 			traceback.print_exc() 
 			return {"Err":True, "Val":"NetWork Error!"}

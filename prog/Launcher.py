@@ -10,7 +10,7 @@ import datetime
 
 Root = os.path.abspath(os.path.split(os.path.realpath(__file__))[0]+"/")
 LogRoot = Root+"/logs/"
-print os.path.exists(LogRoot)
+# print os.path.exists(LogRoot)
 CFG = json.loads(open(Root+"/LauncherConfig.json","r").read())
 
 
