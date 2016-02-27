@@ -190,5 +190,7 @@ class Application(Application_ui):
 
 if __name__ == "__main__":
     top = Tk()
+    canvas = Canvas(top,width = 640, height = 480, bg = '#E6E6E6')
+    canvas.pack(expand = YES, fill = BOTH)
     Application(top).mainloop()
 

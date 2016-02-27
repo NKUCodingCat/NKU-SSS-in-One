@@ -6,7 +6,6 @@ Ver = 'Ver 3.0.1 With OCR & RSA (20150915)'
 import C
 import re
 import os, sys
-import PIL.Image, PIL.ImageTk 
 import time
 import StringIO
 from xkocr import OCR
@@ -36,6 +35,8 @@ else:  #Python 3.x
 	from tkinter.messagebox import *
 	#import tkinter.filedialog as tkFileDialog
 	#import tkinter.simpledialog as tkSimpleDialog	#askstring()
+
+import PIL.Image, PIL.ImageTk 
 
 class Application_ui(Frame):
 	#这个类仅实现界面生成功能，具体事件处理代码在子类Application中。
@@ -415,11 +416,11 @@ class Application(Application_ui):
 		else:
 			fail_course = Status["Val"][1]["UnSelected"]
 			self.InsLog(Status["Val"][0], self.Log)
-			
-		for Selected_Course in Status["Val"][1]["Selected"]:
-			self.Log2.insert(1.0, Selected_Course+' '+self.Xuanke_obj.Get_Course_Name(Selected_Course)+'\n')
-			self.Log2.delete(20.0,END)
-			self.Log2.update()
+
+			for Selected_Course in Status["Val"][1]["Selected"]:
+				self.Log2.insert(1.0, Selected_Course+' '+self.Xuanke_obj.Get_Course_Name(Selected_Course)+'\n')
+				self.Log2.delete(20.0,END)
+				self.Log2.update()
 
 		self.Log.insert(1.0,'-----------------休眠5秒--------------------\n')
 		Wait = (NEXT_POST-time.time())/20
@@ -463,4 +464,7 @@ class Application(Application_ui):
 
 if __name__ == "__main__":
 	top = Tk()
+	canvas = Canvas(top,width = 640, height = 480, bg = '#E6E6E6')
+	canvas.pack(expand = YES, fill = BOTH)
+
 	Application(top).mainloop()

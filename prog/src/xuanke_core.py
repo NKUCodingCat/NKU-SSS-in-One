@@ -58,7 +58,7 @@ class Xuanke(PJ.PJ):
 		else:
 			Return_Status = ""
 		if re.findall(r'无效', Return_Status):
-			return {"Err":True, "Val":"Invalidate Course Number"}
+			return {"Err":True, "Val":"Invalid Course Number"}
 		if re.findall(r'正确的验证码', Data):
 			return {"Err":True , "Val":"OCR for ValidateCode Fail"}
 		return {"Err":False, "Val":(Return_Status, self.CheckSelected(Array_of_Course))}
@@ -98,10 +98,12 @@ class Xuanke(PJ.PJ):
 		Tmp_Dict = {"Selected":[], "UnSelected":[]}
 		WEB = self.Session.get("http://222.30.32.10/xsxk/selectedAction.do?operation=kebiao").content
 		for Course_Code in Array_of_Course:
+			# print Course_Code
 			if re.findall(re.escape(self.Get_Course_Name(Course_Code).decode("utf-8", 'ignore').encode('gbk')), WEB):
 				Tmp_Dict["Selected"].append(Course_Code)
 			else:
 				Tmp_Dict["UnSelected"].append(Course_Code)
+		# print Tmp_Dict
 		return Tmp_Dict
 		
 	def CheckSystemStatus(self):

@@ -87,6 +87,7 @@ class Unbuffered(object):
 		
 if __name__ == "__main__":
 	try:
+		os.mkdir(LogRoot) if not os.path.exists(LogRoot) else None
 		H = open("%s/%s.log"%(LogRoot, datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d_%H-%M-%S")), "w")
 		sys.stdout = Unbuffered(sys.stdout, H)
 		choo()

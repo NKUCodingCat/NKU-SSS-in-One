@@ -18,14 +18,15 @@ class AnsFind:
 		return sorted(S, key=lambda x:x[2])[-1]
 	def Manual_Select(self, Q_S_Tuple):
 		print u"请手动选择答案"
-		print (u"题目 > %s"%Q_S_Tuple[0]).encode("GBK", 'ignore')
+		print unicode((u"题目 > %s"%Q_S_Tuple[0]).encode("GBK", 'ignore').decode("GBK"))
 		k = 1
 		for i in Q_S_Tuple[1].keys():
 			print k, Q_S_Tuple[1][i]
 			k+=1
 		while True:
 			try:
-				Ans = raw_input("请输入序号：".decode("utf-8").encode("GBK"))
+				print "请输入序号：",
+				Ans = raw_input(u"")
 				return [Q_S_Tuple[1].keys()[int(Ans)-1], Q_S_Tuple[1][Q_S_Tuple[1].keys()[int(Ans)-1]], 1.0]
 			except:
 				print u"请输入正确的序号"
