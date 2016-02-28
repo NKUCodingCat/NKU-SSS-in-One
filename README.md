@@ -4,10 +4,15 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 ## 使用方法 ##
 戳 [Github官方源](https://nodeload.github.com/NKUCodingCat/NKU-SSS-in-One/legacy.zip/master) 、[CloudFlare加速源](http://rhc-py-ser-1.nkucodingcat.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip) 或者 [OpenShift加速源](https://python-nkusss.rhcloud.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip)下载， 已经支持在线更新所以如果有自动更新的可能请尽量选择自动更新, 最后一版我确定没有bug但是不一定能用的版本在[这里](https://github.com/NKUCodingCat/NKU-SSS-in-One/releases/latest)
 
-解压以后windows 请点击main.exe, linux/OSX请`bash s.sh`(记得装依赖哦~)
+正确的使用姿势：
 
+1. 在任何你喜欢的地方解压压缩包
+2. 根据系统选择你的打开方式
 
-###Linux用户请自己安装下列依赖，这是Linux哲♂学###
+* Windows: 点击main.exe
+* OS X: 点击main.command 
+* Linux: 安装好下面那些依赖然后bash main.sh，这是windows哲学
+
 
 ## 依赖 ##
 `lxml-3.4.4, requests-2.7.0, Tkinter, pillow-2.9.0, numpy-1.9.2`
