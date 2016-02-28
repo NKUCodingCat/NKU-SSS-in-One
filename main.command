@@ -1,5 +1,5 @@
 #!/bin/bash -x 
-source $(dirname ${0})/clean/bin/activate
-python $(dirname ${0})/prog/Launcher.py
+source "$(cd "$(dirname "$0")"; pwd)/clean/bin/activate"
+python "$(cd "$(dirname "$0")"; pwd)/prog/Launcher.py"
 deactivate
 exit
