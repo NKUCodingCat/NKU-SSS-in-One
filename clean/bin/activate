@@ -39,8 +39,7 @@ deactivate () {
 
 # unset irrelevant variables
 deactivate nondestructive
-
-VIRTUAL_ENV="/Users/chenjingtao/clean"
+VIRTUAL_ENV="$(cd `dirname $0`; pwd)/clean"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
