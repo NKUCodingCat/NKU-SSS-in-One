@@ -8,10 +8,10 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 
 1. 在任何你喜欢的地方解压压缩包
 2. 根据系统选择你的打开方式
-
-* Windows: 点击main.exe
-* OS X: 点击main.command 
-* Linux: 安装好下面那些依赖然后bash main.sh，这是windows哲学
+    * Windows: 点击main.exe
+    * OS X: 点击main.command 
+    * Linux: 安装好下面那些依赖然后bash main.sh，这是Linux哲学
+3. 如有bug请给nankai.codingcat@outlook.com
 
 
 ## 依赖 ##
