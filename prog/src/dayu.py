@@ -98,9 +98,9 @@ def Main(usr, pwd, wait):
 		A, B, C = GetQue(S)
 		STA = time.time()
 		for i in A.items():
-			print u"\n题目: ", unicode(i[1][0].decode("utf-8", 'ignore'))
+			print u"\n题目: ", unicode(i[1][0].decode("utf-8", 'ignore').encode("GBK", "ignore").decode("GBK", "ignore"))
 			Q =  P.FindAns(i[1])
-			print u"\n选择：", unicode(Q[1].decode("utf-8", 'ignore'))
+			print u"\n选择：", unicode(Q[1].decode("utf-8", 'ignore').encode("GBK", "ignore").decode("GBK", "ignore"))
 			print u"======================================="
 			G.append(Q[0])
 			M+=1

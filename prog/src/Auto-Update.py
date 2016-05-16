@@ -3,15 +3,19 @@ import C
 import os, md5, json, re, requests, copy, urllib
 from functools import partial
 import bar
+import glob
+import filecmp
 
 
 
-def MD5_Info_for_dir(RootDir, Prefix ):
+def MD5_Info_for_dir(RootDir, Prefix, Excepts = []):
 	Q = {}
 	for i in os.walk(root):
 		pa, fo, fi = i
 		for i in fi:
 			E = os.path.relpath(pa, root)
+			if E in Excepts:
+				continue
 			E = E+"/" if E != "." else ""
 			try:
 				F = re.sub(r"\\",r"/", E+i)
@@ -60,7 +64,7 @@ def File_Down(Path, NetBase, Root):
 		
 		urllib.urlretrieve(NetBase%Path.encode('utf-8'), Local_File, reporthook=lambda x, y, z: Bar.update(x*y*100.0/z) if z>524288 else None)
 		print "\n"
-		#open(Local_File , "wb").write(requests.get(, verify = False).content)
+
 	except:
 		#raise
 		print u"Error Occured When Updating %s"%(Root+Path)
@@ -79,7 +83,8 @@ if __name__ == "__main__":
 		print u"Download MD5 Info from Remote Server Failed!"
 	else:
 		print u"Calculating MD5 Info for all Files "
-		Q = MD5_Info_for_dir(root, Prefix)
+		print glob.glob(root+"/prog/logs/*")
+		Q = MD5_Info_for_dir(root, Prefix, map(lambda x:os.path.relpath(x, root), glob.glob(root+"/prog/logs/*")))
 		L, M, D = Diff_Dict(P, Q)
 		print u"\n=========================="
 		Update  = partial(File_Down, NetBase = "https://python-nkusss.rhcloud.com/data/ext/NKU-SSS-in-One-master/%s", Root = root+"/")

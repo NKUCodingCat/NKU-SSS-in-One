@@ -25,7 +25,7 @@ class AnsFind:
 			k+=1
 		while True:
 			try:
-				print "请输入序号：",
+				print u"请输入序号：",
 				Ans = raw_input(u"")
 				return [Q_S_Tuple[1].keys()[int(Ans)-1], Q_S_Tuple[1][Q_S_Tuple[1].keys()[int(Ans)-1]], 1.0]
 			except:
