@@ -1,2 +1,2 @@
 import webbrowser
-webbrowser.open_new("https://github.com/NKUCodingCat/NKU-SSS-in-One")
+webbrowser.open_new("https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One/git/archive/master")
