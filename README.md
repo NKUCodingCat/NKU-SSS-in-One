@@ -2,7 +2,7 @@
 NKU-SSS整合计划， 看完README再问问题么么哒
 
 ## 使用方法 ##
-戳 <a href="https://coding.net/u/NKUCodingCat/p/trial/git/archive/master" target="_blank">Coding.net加速源【墙裂推荐使用】</a>、[Github官方源](https://nodeload.github.com/NKUCodingCat/NKU-SSS-in-One/legacy.zip/master) 、[CloudFlare加速源](http://rhc-py-ser-1.nkucodingcat.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip) 或者 [OpenShift加速源](https://python-nkusss.rhcloud.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip)下载， 已经支持在线更新所以如果有自动更新的可能请尽量选择自动更新, 最后一版我确定没有bug但是不一定能用的版本在[这里](https://github.com/NKUCodingCat/NKU-SSS-in-One/releases/latest)，墙内同步的repo在[Coding.net](https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One/git)
+戳 <a href="https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One/git/archive/master" target="_blank">Coding.net加速源【墙裂推荐使用】</a>、[Github官方源](https://nodeload.github.com/NKUCodingCat/NKU-SSS-in-One/legacy.zip/master) 、[CloudFlare加速源](http://rhc-py-ser-1.nkucodingcat.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip) 或者 [OpenShift加速源](https://python-nkusss.rhcloud.com/data/zip/NKU-SSS-in-One-NKUCodingCat.zip)下载， 已经支持在线更新所以如果有自动更新的可能请尽量选择自动更新, 最后一版我确定没有bug但是不一定能用的版本在[这里](https://github.com/NKUCodingCat/NKU-SSS-in-One/releases/latest)，墙内同步的repo在[Coding.net](https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One/git)
 
 正确的使用姿势：
 
