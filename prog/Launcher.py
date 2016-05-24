@@ -33,7 +33,12 @@ def Start(Prog):
 	if not (getattr(sys, "getwindowsversion", None)):
 		#not a windows
 		#print FilePath
-		os.system("%s \"%s\""%("python", FilePath))
+		cmd = "python"
+		for pycmd in ('python2.7', 'python2', 'python'):
+			if os.system('which %s' % pycmd) == 0:
+				cmd = pycmd
+				break
+		os.system("%s \"%s\""%(cmd, FilePath))
 	
 	else:
 		#on windows
