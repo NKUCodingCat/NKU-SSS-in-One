@@ -84,7 +84,7 @@ if __name__ == "__main__":
 	
 	print u"downloading MD5 Info ......."
 	try:
-		P = json.loads(json.loads(requests.get("https://python-nkusss.rhcloud.com/UPD-SSS-in-One", verify = False).content)[0][-1])
+		P = json.loads(json.loads(requests.get("https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One-MD5s/git/raw/master/md5.txt", verify = False).content)[0][-1])
 	except:
 		print u"Download MD5 Info from Remote Server Failed!"
 	else:
