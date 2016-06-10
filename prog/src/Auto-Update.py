@@ -19,10 +19,10 @@ def MD5_Info_for_dir(RootDir, Prefix, Excepts = []):
 				continue
 			E = E+"/" if E != "." else ""
 			try:
-				F = re.sub(r"\\",r"/", E+i)
+				F = re.sub(re.escape(os.sep), r"/", E+i)
 				Q[unicode(Prefix+F.decode(DEF_ENCODING))] = unicode(md5.new(open(root+"/"+F, "rb").read()).hexdigest())
 			except:
-				pass
+				traceback.print_exc()
 	return Q
 
 def Diff_Dict(Remote, Local):
@@ -86,7 +86,11 @@ if __name__ == "__main__":
 	try:
 		P = json.loads(json.loads(requests.get("https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One-MD5s/git/raw/master/md5.txt", verify = False).content)[0][-1])
 	except:
-		print u"Download MD5 Info from Remote Server Failed!"
+		print u"Download MD5 Info from Remote Server Failed! \n\n        Please **RETRY** and Mail to nankai.codingcat@outlook.com to report (if you want)"
+		print u"\nToo many Retry means that you should manually download it from Github again \n"
+		print   u"====================Error log======================\n"
+		traceback.print_exc()
+		print u"\n==================Error log End====================\n"
 	else:
 		print u"Calculating MD5 Info for all Files "
 		
