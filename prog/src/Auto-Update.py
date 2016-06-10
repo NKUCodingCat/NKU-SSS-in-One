@@ -1,6 +1,7 @@
 import C
 import os, md5, json, re, requests, copy, urllib, locale, traceback
 DEF_LANG, DEF_ENCODING = locale.getdefaultlocale()
+FILES_LIMIT = 20
 from functools import partial
 import bar
 import glob
@@ -44,7 +45,11 @@ def Del_Prefix(Array, Prefix):
 	return map(lambda x:re.sub("^"+re.escape(Prefix), "", x), Array)
 
 def Sync(Array, Word, Prefix, Func):
+
 	if len(Array) != 0: 
+		if len(Array) > FILES_LIMIT and Func == Update:
+			print u"\n\n there %s files to be updated and it may costs a long time\n\n    DO YOU WANT TO CONTINUED INSTEAD OF RE-DOWMLOAD?\n\n"%(len(Array)),
+			raw_input("PRESS ENTER to CONTINUE or CLOSE this window and open your browser")
 		Array = Del_Prefix(Array, Prefix)
 		print Word%len(Array)
 		print "\n".join(Array)
@@ -97,7 +102,7 @@ if __name__ == "__main__":
 		Q = MD5_Info_for_dir(root, Prefix, Exps)
 		L, M, D = Diff_Dict(P, Q)
 		print u"\n=========================="
-		Update  = partial(File_Down, NetBase = "https://python-nkusss.rhcloud.com/data/ext/NKU-SSS-in-One-master/%s", Root = root+"/")
+		Update  = partial(File_Down, NetBase = "https://coding.net/u/NKUCodingCat/p/NKU-SSS-in-One/git/raw/master/%s", Root = root+"/")
 		Sync(L, "==========================\nThere %s files not found in Local", Prefix, Update)
 		Sync(M, "==========================\nThere %s files not found in Remote", Prefix, lambda x:os.remove(root+"/"+x.encode(DEF_ENCODING)))
 		Sync(D, "==========================\nThere %s files not same as the file in Local", Prefix, Update)
