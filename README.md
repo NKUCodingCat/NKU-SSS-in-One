@@ -8,10 +8,10 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 
 1. 在任何你喜欢的地方解压压缩包
 2. 根据系统选择你的打开方式
-    * Windows: 点击main.exe
-    * OS X: 点击main.command 
-    * Linux: 安装好下面那些依赖然后bash main.sh，这是Linux哲学
-3. 如有bug请给nankai.codingcat@outlook.com
+    * Windows: 点击 main.exe
+    * OS X: 点击 OS X - main.command
+    * Linux: 安装好下面那些依赖然后 `bash main.sh` *这是Linux哲学*
+3. 如有bug请发送email至nankai.codingcat@outlook.com，我将尽力修复
 
 
 ## 依赖 ##
@@ -19,7 +19,7 @@ NKU-SSS整合计划， 看完README再问问题么么哒
 
 话说能看到这里的人是不是都不会太在乎版本的问题啊=。=
 
-记得哈，是Python 2.7.x，用Python 3跑的别怪我没说
+记得哈，是Python 2.7.x，用Python 3跑的别怪我没说 *目前有迁移到python 34/35的计划*
 
 ##吐槽部分##
 身为世界一流大学的隔壁，没有一点为学生的学习着想，用拍脑袋替代调研，强行让学生为学校的政绩工程买单，呵呵。
