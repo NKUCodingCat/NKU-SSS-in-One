@@ -97,6 +97,7 @@ if __name__ == "__main__":
 		sys.stdout = Unbuffered(sys.stdout, H)
 		choo()
 	except:
+		import traceback
 		traceback.print_exc() 
 	finally:
 		H.close()
