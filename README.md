@@ -1,4 +1,4 @@
-# NKU-SSS-in-One (Windows & OS X Supported)
+# NKU-SSS-in-One (Windows & Mac OS Supported)
 NKU-SSS整合计划， 看完README再问问题么么哒
 
 ## 使用方法 ##
