@@ -232,7 +232,7 @@ class Application(Application_ui):
 		self.Xuanke_obj = Xuanke()
 		Application_ui.__init__(self, self.Xuanke_obj.vcode , master)
 		if not self.Xuanke_obj.NetWork:
-           			self.InsLog(u"不能连接到选课系统,请检查网络并重启", self.Log)
+			self.InsLog(u"不能连接到选课系统,请检查网络并重启", self.Log)
 		self.isInLoop = False
 
 	def InsLog(self, Text, Target = None): #Done
@@ -243,7 +243,7 @@ class Application(Application_ui):
 		Target.update()
 
 	def Login_Cmd(self, event=None): #Done
-
+		self.InsLog("Sending data..........", self.Log)
 		ID=self.ID.get()
 		passwd=self.PassWord.get()
 		v_code=self.vcode.get()

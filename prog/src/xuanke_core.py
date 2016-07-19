@@ -13,7 +13,7 @@ class Xuanke(PJ.PJ):
 		self.OCR_OBJ = OCR.Val_to_Str(os.path.split(os.path.realpath(__file__))[0]+"/dump-fuck.txt")
 		self.Xuanke_Target_url = "http://222.30.32.10/xsxk/swichAction.do"
 		self.Xuanke_Valcode_url = "http://222.30.32.10/SelectValidateCode"
-		self.Xuanke_Inquire_Course_url = "http://jwc.nankai.edu.cn/apps/xksc/search.asp"
+		self.Xuanke_Inquire_Course_url = "http://222.30.32.3/apps/xksc/search.asp"
 		self.Inquire_Session = requests.session()
 		self.Xuanke_Name_Cache = {}
 
@@ -79,7 +79,7 @@ class Xuanke(PJ.PJ):
 		if Name:
 			return Name
 		else:
-			formdata='strsearch='+Course_Code+'&radio=1&Submit=%CC%E1%BD%BB'
+			formdata='strsearch='+Course_Code+'&radio=2&Submit=%CC%E1%BD%BB'
 			try:
 				Data = self.Inquire_Session.post(self.Xuanke_Inquire_Course_url, data = formdata, headers ={'Content-Type': 'application/x-www-form-urlencoded'}).content.decode("gb2312")
 			except:
