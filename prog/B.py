@@ -4,7 +4,7 @@ import glob
 import sysconfig
 import re
 
-reload(sys).setdefaultencoding('UTF-8')
+sys.setdefaultencoding('UTF-8')
 sys.dont_write_bytecode = True
 
 sys.path = [i for i in sys.path if not re.findall("lib-tk", i)]

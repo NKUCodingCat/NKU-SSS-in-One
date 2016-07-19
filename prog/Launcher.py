@@ -7,7 +7,9 @@ import re
 import subprocess
 import time
 import datetime
+import locale
 
+DEF_LANG, DEF_ENCODING = locale.getdefaultlocale()
 Root = os.path.abspath(os.path.split(os.path.realpath(__file__))[0]+"/")
 LogRoot = Root+"/logs/"
 # print os.path.exists(LogRoot)
@@ -20,8 +22,8 @@ def Start(Prog):
 		FilePath = Root+Prog["file"]
 		StartPath = Root+"/python27.exe"
 	except UnicodeDecodeError:
-		FilePath = (Root.decode("GBK")+Prog["file"]).encode("GBK")
-		StartPath = (Root.decode("GBK")+"/python27.exe").encode("GBK")
+		FilePath = (Root.decode(DEF_ENCODING)+Prog["file"]).encode(DEF_ENCODING)
+		StartPath = (Root.decode(DEF_ENCODING)+"/python27.exe").encode(DEF_ENCODING)
 	FilePath = os.path.abspath(FilePath)
 	StartPath = os.path.abspath(StartPath)
 	if not os.path.isfile(FilePath):
@@ -31,8 +33,7 @@ def Start(Prog):
 		return 
 	print u"启动中。。。。。。。"
 	if not (getattr(sys, "getwindowsversion", None)):
-		#not a windows
-		#print FilePath
+		#not on windows
 		cmd = "python"
 		for pycmd in ('python2.7', 'python2', 'python'):
 			if os.system('which %s' % pycmd) == 0:
@@ -72,35 +73,10 @@ def choo():
 		print u"有错误发生, 按enter退出"
 		raw_input()
 
-class Unbuffered(object):
-	def __init__(self, stream, *other_streams):
-		self.stream = stream
-		self.others = other_streams
-		for j in self.others:
-			j.write("==============Log record begin @ %s==============="%time.ctime())
 
-	def write(self, data):
-		self.stream.write(data)
-		self.stream.flush()
-		for i in self.others:
-			i.write(data)
-			i.flush()
-
-
-
-
-		
 if __name__ == "__main__":
 	try:
-		os.mkdir(LogRoot) if not os.path.exists(LogRoot) else None
-		H = open("%s/%s.log"%(LogRoot, datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d_%H-%M-%S")), "w")
-		sys.stdout = Unbuffered(sys.stdout, H)
 		choo()
 	except:
 		import traceback
 		traceback.print_exc() 
-	finally:
-		H.close()
-	
-
-	
