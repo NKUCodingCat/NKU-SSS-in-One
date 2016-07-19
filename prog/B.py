@@ -30,9 +30,11 @@ class IO_Logger(object):
 
         if stream != raw_input:
             self.__call__ = None
+        else:
+            self.r = __builtin__.raw_input
 
     def __call__(self, *args, **kwarg): # Patch for raw_input
-        return functools.partial(self.F3, __builtin__.raw_input)(*args, **kwarg)
+        return functools.partial(self.F3, self.r)(*args, **kwarg)
 
     def F1(self, func, data):
         for i in self.others:
@@ -65,10 +67,10 @@ def Patch_all_IOs(Log_file_name = None):
     LogRoot = Root+"/logs/"
     os.mkdir(LogRoot) if not os.path.exists(LogRoot) else None
     H = open("%s/%s.log"%(LogRoot, Log_file_name or (datetime.datetime.strftime(datetime.datetime.now(), "%Y-%m-%d_%H-%M-%S"))), "w")
-    sys.stdin = IO_Logger(sys.stdin, H)
-    sys.stdout = IO_Logger(sys.stdout, H)
-    sys.stderr = IO_Logger(sys.stderr, H)
-    raw_input = IO_Logger(raw_input, H)
+    sys.stdin             = IO_Logger(sys.stdin, H)
+    sys.stdout            = IO_Logger(sys.stdout, H)
+    sys.stderr            = IO_Logger(sys.stderr, H)
+    __builtin__.raw_input = IO_Logger(raw_input, H)
 
 #  =================
 
@@ -87,7 +89,8 @@ except AttributeError :
     del(o)
     del(e)
     del(r)
-    
+
+ 
 
 sys.dont_write_bytecode = True
 
