@@ -27,7 +27,7 @@ class PJ():
 			"submittype":"\xC8\xB7 \xC8\xCF"
 		}
 		try:
-			content = self.Session.post("http://222.30.32.10/stdloginAction.do", data = postdata, timeout=5).content.decode("gb2312")
+			content = self.Session.post("http://222.30.49.10/stdloginAction.do", data = postdata, timeout=5).content.decode("gb2312")
 		except Exception,e: 
 			traceback.print_exc() 
 			return {"Err":True, "Val":"NetWork Error!"}
@@ -43,7 +43,7 @@ class PJ():
 			return {"Err":True, "Val":"UnknownError!"}
 	
 	def GetVcode(self):
-		Q = self.Session.get("http://222.30.32.10/ValidateCode")
+		Q = self.Session.get("http://222.30.49.10/ValidateCode")
 		if Q.status_code != 200:
 			return None
 		else:
@@ -57,7 +57,7 @@ class PJ():
 		self.vcode = StringIO.StringIO(base64.b64decode(self.white))
 		self.NetWork = False
 		try:
-			self.Session.get("http://222.30.32.10")
+			self.Session.get("http://222.30.49.10")
 			M = self.GetVcode()
 			if M:
 				self.vcode = M
@@ -69,10 +69,10 @@ class PJ():
 	
 	def PJ(self, func = (lambda obj:sys.stdout.write(obj+'\n') )):
 		try:
-			G = self.Session.get("http://222.30.32.10/evaluate/stdevatea/queryCourseAction.do")
+			G = self.Session.get("http://222.30.49.10/evaluate/stdevatea/queryCourseAction.do")
 		except :
 			return {"Err":True, "Val":"NetWork Error!"}
-		if G.url == "http://222.30.32.10/stdlogin.jsp":
+		if G.url == "http://222.30.49.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
 		else:
 			try:
@@ -81,7 +81,7 @@ class PJ():
 				return {"Err":True, "Val":"Remote Server does not work as expected."}
 			failcount=0
 			for i in range(num):
-				Add = "http://222.30.32.10/evaluate/stdevatea/queryTargetAction.do?operation=target&index=%s"%str(i)
+				Add = "http://222.30.49.10/evaluate/stdevatea/queryTargetAction.do?operation=target&index=%s"%str(i)
 				D = self.Session.get(Add).content.decode("gb2312")
 				D = D.replace(u"该教师给你的总体印象",u"该教师给你的总体印象（10）")
 				item=re.findall(u"（([0-9]*)）", D)
@@ -90,7 +90,7 @@ class PJ():
 					params+=("&array["+str(j)+"]="+item[j])
 				params+="&opinion="
 				#print params
-				E = self.Session.post("http://222.30.32.10/evaluate/stdevatea/queryTargetAction.do", headers = {"Referer":Add, "Content-Type": "application/x-www-form-urlencoded"}, data = params).content.decode("gb2312")
+				E = self.Session.post("http://222.30.49.10/evaluate/stdevatea/queryTargetAction.do", headers = {"Referer":Add, "Content-Type": "application/x-www-form-urlencoded"}, data = params).content.decode("gb2312")
 				if not re.findall(u"成功保存", E):
 					failcount += 1
 				func(u"评价第%s门课完成， 状态：%s"%(i+1, u"成功" if not re.findall("成功保存", E) else u"失败"))
@@ -98,10 +98,10 @@ class PJ():
 			
 	def Score_Spider(self):
 		try:
-			G = self.Session.get("http://222.30.32.10/xsxk/studiedAction.do")
+			G = self.Session.get("http://222.30.49.10/xsxk/studiedAction.do")
 		except :
 			return {"Err":True, "Val":"NetWork Error!"}
-		if G.url == "http://222.30.32.10/stdlogin.jsp":
+		if G.url == "http://222.30.49.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
 		else:
 			try:
@@ -111,7 +111,7 @@ class PJ():
 				return {"Err":True, "Val":"Remote Server does not work as expected."}
 			T_Arr = []
 			for i in range(1, num+1):
-				H = self.Session.post("http://222.30.32.10/xsxk/studiedPageAction.do", data = {"index": i})
+				H = self.Session.post("http://222.30.49.10/xsxk/studiedPageAction.do", data = {"index": i})
 				F = etree.HTML(H.content.lower().decode("GBK", "ignore"))
 				Table_row = F.xpath(u"//table")[1].xpath(u'tr')[1:]
 				for row in Table_row:

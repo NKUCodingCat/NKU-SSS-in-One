@@ -441,7 +441,7 @@ class Application(Application_ui):
 		while not self.Xuanke_obj.CheckSystemStatus():
 			if not self.isInLoop:
 				return False
-			self.InsLog("选课系统还没开~3秒后重试~\n", self.Log)
+			self.InsLog("Check System Status - 选课系统还没开~3秒后重试~\n", self.Log)
 			for j in range (0,12):
 				time.sleep(0.25)
 				self.Log.update()
