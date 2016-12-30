@@ -19,16 +19,14 @@ class Xuanke(PJ.PJ):
 
 	def CheckLogin(self):
 		try:
-			NULL_F = self.Session.get("http://222.30.49.10/xsxk/sub_xsxk.jsp")
+			NULL_F = self.Session.get("http://eamis.nankai.edu.cn/eams/stdElectCourse.action")
 		except:
-			
 			return False
 		else:
-			if NULL_F.url == "http://222.30.49.10/stdlogin.jsp":
+			if NULL_F.content.find("logindiv") != -1:
 				NULL_F = NULL_F.content
 				return False
 			else:
-				NULL_F = self.Session.get("http://222.30.49.10/xsxk/selectMianInitAction.do").content
 				return True
 	
 	def Xuanke(self, Array_of_Course):
@@ -108,10 +106,10 @@ class Xuanke(PJ.PJ):
 		
 	def CheckSystemStatus(self):
 		try:
-			Xuanke_sys_Status = self.Session.get('''http://222.30.49.10/xsxk/selectMianInitAction.do''').content.decode("gbk").encode('utf-8')
+			Xuanke_sys_Status = self.Session.get('''http://eamis.nankai.edu.cn/eams/stdElectCourse.action''').content.decode('utf-8')
 		except:
 			raise
-		if re.findall(u'''<input type="button" name="xuanke"''', Xuanke_sys_Status):
+		if re.findall(u'''<input''', Xuanke_sys_Status):
 			return True
 		else:
 			return False
