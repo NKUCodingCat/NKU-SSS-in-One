@@ -14,7 +14,7 @@ class PJ():
 		self.white = 'iVBORw0KGgoAAAANSUhEUgAAAJYAAAAZCAIAAABchUC4AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3wYdAgYerV4wMwAAAD9JREFUaN7t0QENAAAIwzDAv+ejg9BJWDtJ6XJjAUIhFEKEQiiEQohQCIVQCBEKoRAKIUIhFEIhRCiEQiiEL1sX+wMvfsLvYwAAAABJRU5ErkJggg=='
 		self.RefreshAll()
 
-	def Login(self, usr, pwd, vcode):
+	def Login(self, usr, pwd, vcode):  # Done
 		postdata = {
 			"encodedPassword":"",
 			"username":usr,
@@ -40,7 +40,7 @@ class PJ():
 		else:
 			return {"Err":True, "Val":"UnknownError!"}
 	
-	def GetVcode(self):
+	def GetVcode(self):   # Done
 		Q = self.Session.get("http://eamis.nankai.edu.cn/eams/captcha/image.action")
 		if Q.status_code != 200:
 			return None
@@ -48,7 +48,7 @@ class PJ():
 			return StringIO.StringIO(Q.content)
 
 	
-	def RefreshAll(self):
+	def RefreshAll(self):  # Done
 		print "Refreshed"
 		self.Session = requests.session()
 		self.Session.proxies = {"http":"127.0.0.1:8888"}
