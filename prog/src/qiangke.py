@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 from __future__ import division
-Ver = 'Ver 3.0.1 With OCR & RSA (20150915)'
+Ver = '`4.0a With OCR (20161229)'
 
 import C
 import re
@@ -43,7 +43,7 @@ class Application_ui(Frame):
 	def __init__(self, vcode_img, master=None):
 		Frame.__init__(self, master)
 		self.vcode_img = vcode_img
-		self.master.title('一键刷课 for NKU V3.0 Basic')
+		self.master.title('一键刷课 for NKU V4.0a Dev Version')
 		self.master.geometry('640x480')
 		self.createWidgets()
 
