@@ -10,6 +10,7 @@ import time
 import StringIO
 from xkocr import OCR
 from xuanke_core import Xuanke
+import traceback
 
 #----------------------------------------------------
 
@@ -222,8 +223,8 @@ class Application_ui(Frame):
 
 		self.photo=PIL.Image.open(self.vcode_img)
 		self.im = PIL.ImageTk.PhotoImage(self.photo)
-		self.V_Pic= Label(self.top,image = self.im)
-		self.V_Pic.place(relx=0.05, rely=0.203, relwidth=0.327, relheight=0.053)
+		self.V_Pic = Label(self.top,image = self.im)
+		self.V_Pic.place(relx=0.05, rely=0.203, relwidth=0.327, relheight=0.073)
 
 
 class Application(Application_ui):
@@ -359,8 +360,7 @@ class Application(Application_ui):
 		self.Xuanke_obj.RefreshAll()
 		self.photo=PIL.Image.open(self.Xuanke_obj.vcode)
 		self.im = PIL.ImageTk.PhotoImage(self.photo)
-		self.V_Pic= Label(self.top,image = self.im)
-		self.V_Pic.place(relx=0.05, rely=0.203, relwidth=0.327, relheight=0.053)
+		self.V_Pic.configure(image = self.im)
 		
 	def select_course(self, course_list, mode):
 		selected_list=[]
@@ -390,6 +390,7 @@ class Application(Application_ui):
 			if not self.wait_for_system():
 				return post_course_list
 		except:
+			traceback.print_exc()
 			self.InsLog("Check System Status Error", self.Log)
 			return post_course_list
 		NEXT_POST = time.time()+5
@@ -407,6 +408,7 @@ class Application(Application_ui):
 		try:
 			Status = self.Xuanke_obj.Xuanke(post_course_list)
 		except:
+			traceback.print_exc()
 			raise
 			Status = {"Err":True, "Val":"Unkown False"}
 

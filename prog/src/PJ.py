@@ -24,7 +24,7 @@ class PJ():
 		}
 		try:
 			content = self.Session.post("http://eamis.nankai.edu.cn/eams/login.action", data = postdata, timeout=5).content.decode("utf-8")
-		except Exception,e: 
+		except Exception, e: 
 			traceback.print_exc() 
 			return {"Err":True, "Val":"NetWork Error!"}
 		if content.find("我的账户") != -1:
@@ -63,12 +63,14 @@ class PJ():
 			else:
 				pass		
 		except:
+			traceback.print_exc()
 			pass
 	
 	def PJ(self, func = (lambda obj:sys.stdout.write(obj+'\n') )):
 		try:
 			G = self.Session.get("http://222.30.49.10/evaluate/stdevatea/queryCourseAction.do")
 		except :
+			traceback.print_exc()
 			return {"Err":True, "Val":"NetWork Error!"}
 		if G.url == "http://222.30.49.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
@@ -76,6 +78,7 @@ class PJ():
 			try:
 				num=int(re.findall(u"共 ([0-9]*) 项", G.content.decode("gb2312"))[0])
 			except:
+				traceback.print_exc()
 				return {"Err":True, "Val":"Remote Server does not work as expected."}
 			failcount=0
 			for i in range(num):
@@ -98,6 +101,7 @@ class PJ():
 		try:
 			G = self.Session.get("http://222.30.49.10/xsxk/studiedAction.do")
 		except :
+			traceback.print_exc()
 			return {"Err":True, "Val":"NetWork Error!"}
 		if G.url == "http://222.30.49.10/stdlogin.jsp":
 			return {"Err":True, "Val":"Please Login First!"}
