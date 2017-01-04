@@ -10,10 +10,10 @@ class Xuanke(PJ.PJ):
 	"""docstring for Xuanke"""
 	def __init__(self):
 		PJ.PJ.__init__(self)
-		self.OCR_OBJ = OCR.Val_to_Str(os.path.split(os.path.realpath(__file__))[0]+"/dump-fuck.txt")
-		self.Xuanke_Target_url = "http://222.30.49.10/xsxk/swichAction.do"
-		self.Xuanke_Valcode_url = "http://222.30.49.10/SelectValidateCode"
-		self.Xuanke_Inquire_Course_url = "http://222.30.32.3/apps/xksc/search.asp"
+		# self.OCR_OBJ = OCR.Val_to_Str(os.path.split(os.path.realpath(__file__))[0]+"/dump-fuck.txt")
+		self.Xuanke_Target_url = "http://eamis.nankai.edu.cn/eams/stdElectCourse!batchOperator.action?profileId=41"
+		# self.Xuanke_Valcode_url = "http://222.30.49.10/SelectValidateCode"
+		# self.Xuanke_Inquire_Course_url = "http://222.30.32.3/apps/xksc/search.asp"
 		self.Inquire_Session = requests.session()
 		self.Xuanke_Name_Cache = {}
 
@@ -33,21 +33,7 @@ class Xuanke(PJ.PJ):
 		self.Course_Cache_Refersh()
 		if len(Array_of_Course)>4:
 			return {"Err":True, "Val":"Course Array Too Large"}
-		ValData = self.Session.get(self.Xuanke_Valcode_url)
-		ValData_F = ValData.content
-		if ValData.url == "http://222.30.49.10/stdlogin.jsp":
-			return {"Err":True, "Val":"Please Login at First!"}
-		try:
-			IM_Sel_Valcode = Image.open(StringIO.StringIO(ValData_F))
-		except:
-			IM_Sel_Valcode = None
-		Code = self.OCR_OBJ.IM_to_Str_MatDiff(IM_Sel_Valcode) if IM_Sel_Valcode else ""
 		postdata="operation=xuanke&index=&code=%s"%Code
-		for i in range(4):
-			if i<len(Array_of_Course):
-				postdata += ("&xkxh"+str(i+1)+"="+Array_of_Course[i])
-			else:
-				postdata += ("&xkxh"+str(i+1)+"=")
 		postdata += "&departIncode=%25&courseindex="
 		Data = self.Session.post(self.Xuanke_Target_url, postdata, headers = {"Content-Type":"application/x-www-form-urlencoded"}).content.decode("gbk").encode('utf-8')
 		Return_Status = re.findall(u'"BlueBigText">[\s\S]*</font>', Data)
@@ -57,8 +43,6 @@ class Xuanke(PJ.PJ):
 			Return_Status = ""
 		if re.findall(r'无效', Return_Status):
 			return {"Err":True, "Val":"Invalid Course Number"}
-		if re.findall(r'正确的验证码', Data):
-			return {"Err":True , "Val":"OCR for ValidateCode Fail"}
 		return {"Err":False, "Val":(Return_Status, self.CheckSelected(Array_of_Course))}
 
 	def Course_Cache_Get(self, Course_Code):
